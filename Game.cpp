@@ -3,6 +3,26 @@
 void Game::initVariables()
 {
 	window.create(sf::VideoMode(1280, 720), "Game", sf::Style::Default);
+
+	if (!this->gameFont.loadFromFile("C:/Users/tgpor/Pictures/Saved Pictures/StitchWarriorDemo.ttf"))
+	{
+		std::cout << "ERROR COULD NOT LOAD GAME FONT\n";
+	}
+
+	if (!this->cutsceneFont.loadFromFile("C:/Users/tgpor/Pictures/Saved Pictures/DancingScript-VariableFont_wght.ttf"))
+	{
+		std::cout << "ERROR COULD NOT LOAD CUTSCENE FONT\n";
+	}
+
+	scoreText.setFont(gameFont);
+	scoreText.setFillColor(sf::Color(255, 0, 0));
+	scoreText.setCharacterSize(36);
+	scoreText.setPosition(1050.f, 25.f);
+
+	timeText.setFont(gameFont);
+	timeText.setFillColor(sf::Color(255, 0, 0));
+	timeText.setCharacterSize(36);
+	timeText.setPosition(25.f, 25.f);
 }
 
 Game::Game()
@@ -18,6 +38,9 @@ void Game::run()
 {
 	while (this->window.isOpen())
 	{
+		timeText.setString("Heure " + std::to_string(static_cast<int>(totalClock.getElapsedTime().asSeconds())) + "s");
+		scoreText.setString("Francs " + std::to_string(state.getCoinsCollected()));
+
 		//necessary because code is currently too fast otherwise, so delta time sometimes rounds to zero
 		for (int i = 0; i < 100000; i++)
 		{
@@ -76,7 +99,9 @@ void Game::run()
 		this->window.clear();
 
 		state.getVisuals(&this->window);
-		//this->window.draw(state.getVisuals());
+
+		this->window.draw(scoreText);
+		this->window.draw(timeText);
 
 		this->window.display();
 	}

@@ -7,6 +7,8 @@ private:
 	Player* p;
 	std::vector<Coin*> coins;
 
+	int coinsCollected = 0;
+
 public:
 	State();
 	virtual ~State();
@@ -17,5 +19,6 @@ public:
 	void addCoin();
 	void checkCollisions();
 
+	int getCoinsCollected();
 	void getVisuals(sf::RenderWindow* w);
 };

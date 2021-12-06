@@ -6,6 +6,12 @@ private:
 	//variables
 	sf::RenderWindow window;
 
+	sf::Font gameFont;
+	sf::Font cutsceneFont;
+
+	sf::Text scoreText;
+	sf::Text timeText;
+
 	sf::Clock clock;
 	sf::Clock totalClock;
 	float lastTime = 2.f;

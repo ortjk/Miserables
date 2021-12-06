@@ -5,8 +5,12 @@ class Visuals
 private:
 	sf::Texture spriteSheet;
 
-	sf::Sprite emptySprite;
 	std::vector<sf::Sprite> sprites;
+
+	std::vector<sf::IntRect> rects;
+	void addHitbox(int xpos, int ypos);
+	void removeHitbox(int indexNum);
+	void setHitboxPos(int indexNum, int xpos, int ypos);
 
 public:
 	Visuals();
@@ -16,4 +20,6 @@ public:
 	void removeSprite(int indexNum);
 	sf::Sprite& getSprite(int indexNum);
 	void setSpritePos(int indexNum, int xpos, int ypos);
+
+	bool hitboxIntersectionWithPlayer(int indexNum);
 };

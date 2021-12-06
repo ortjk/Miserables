@@ -20,7 +20,6 @@ State::~State()
 
 void State::removeCoin(int indexNum)
 {
-	std::cout << "a coin was deleted\n";
 	vis->removeSprite(indexNum + 1);
 	delete this->coins[indexNum];
 	coins.erase(coins.begin() + indexNum);
@@ -45,6 +44,7 @@ void State::moveEntity(EntityType type, Direction dir, float& dt)
 		default:
 			break;
 	}
+	this->checkCollisions();
 }
 
 void State::addCoin()
@@ -57,6 +57,19 @@ void State::addCoin()
 
 void State::checkCollisions()
 {
+	for (unsigned int i = 0; i < coins.size(); i++)
+	{
+		if (vis->hitboxIntersectionWithPlayer(i + 1))
+		{
+			this->removeCoin(i);
+			coinsCollected++;
+		}
+	}
+}
+
+int State::getCoinsCollected()
+{
+	return this->coinsCollected;
 }
 
 void State::getVisuals(sf::RenderWindow* w)
