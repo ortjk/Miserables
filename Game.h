@@ -11,12 +11,18 @@ private:
 
 	sf::Text scoreText;
 	sf::Text timeText;
+	sf::Text cutsceneText1;
+	sf::Text cutsceneText2;
+	sf::Text cutsceneText3;
+	sf::Text skipText;
 
 	sf::Clock clock;
 	sf::Clock totalClock;
-	float lastTime = 2.f;
+	float lastTimeC = 2.f;
+	float lastTimeO = 1.f;
 
-	State state;
+	State* state;
+	int stage = 0;
 	//initializers
 	void initVariables();
 

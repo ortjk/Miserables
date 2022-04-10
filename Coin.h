@@ -1,6 +1,6 @@
-#include "Pickup.h"
+#include "Police.h"
 
-class Coin : public Pickup
+class Coin : public Entity
 {
 private:
 public:
